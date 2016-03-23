@@ -1,14 +1,14 @@
 var fs = require('fs');
- 
+
 var et = require('elementtree');
- 
+
 var XML = et.XML;
 var ElementTree = et.ElementTree;
 var element = et.Element;
 var subElement = et.SubElement;
- 
+
 var data, etree;
-var res = {}; 
+var res = {};
 data = fs.readFileSync('./data/test.xml').toString();
 etree = et.parse(data);
 books_var = etree.findall('book');
@@ -21,7 +21,7 @@ books_var.forEach(function(book, index, array) {
     temp.chapters = [];
     c_counter = 0;
     var ch = {}
-    
+
     val.forEach(function(p, i, arr) {
 	if(p._children.length > 0) {
 	    p._children.forEach(function(v, i, varr) {
@@ -40,9 +40,10 @@ books_var.forEach(function(book, index, array) {
     res.books.push(temp);
 });
 console.log(res);
-/* 
-console.log(etree.findall('./entry/TenantId').length); // 2 
-console.log(etree.findtext('./entry/ServiceName')); // MaaS 
-console.log(etree.findall('./entry/category')[0].get('term')); // monitoring.entity.create 
-console.log(etree.findall('/category/[@term="monitoring.entity.update"]').length); // 1 
+/*
+console.log(etree.findall('./entry/TenantId').length); // 2
+console.log(etree.findtext('./entry/ServiceName')); // MaaS
+console.log(etree.findall('./entry/category')[0].get('term')); // monitoring.entity.create
+console.log(etree.findall('/category/[@term="monitoring.entity.update"]').length); // 1
 */
+// my changes
