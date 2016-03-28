@@ -15,23 +15,20 @@ books_var = etree.findall('book');
 res.langCode = etree.find('languageCode').text;
 res.books = [];
 books_var.forEach(function(book, index, array) {
+
   val = book.findall('p');
   temp = {};
 
   temp.toc = [];
   var tl = {};
 
-    if(book._children.length>0){
       book._children.forEach(function(toc, l, m){
         if (toc.tag == 'toc') {
-           tl.level = toc.attrib.level;
-           tl.text = toc.text;
-          temp.toc.push(tl);
-          console.log(toc);
+           tl[toc.attrib.level] = toc.text ;
         }
-      })
-      // temp.toc.push(tl);
-    };
+      });
+      temp.toc.push(tl);
+      //console.log(temp.toc);
 
   temp.name = book.attrib.id;
   temp.chapters = [];
@@ -54,8 +51,9 @@ books_var.forEach(function(book, index, array) {
   });
   temp.chapters.push(ch);
   res.books.push(temp);
+  console.log(res.books[index].toc);
 });
-//console.log(res.books[0].chapters);
+//console.log(res.books[1].toc);
 /*
 console.log(etree.findall('./entry/TenantId').length); // 2
 console.log(etree.findtext('./entry/ServiceName')); // MaaS
