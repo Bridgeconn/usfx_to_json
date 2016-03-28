@@ -21,15 +21,13 @@ books_var.forEach(function(book, index, array) {
   temp.toc = [];
   var tl = {};
 
-  temp2 = [];
-console.log(book.findall('toc'));
     if(book._children.length>0){
       book._children.forEach(function(toc, l, m){
         if (toc.tag == 'toc') {
            tl.level = toc.attrib.level;
            tl.text = toc.text;
-          temp2.push(tl);
-          //console.log(temp2);
+          temp.toc.push(tl);
+          console.log(toc);
         }
       })
       // temp.toc.push(tl);
@@ -57,7 +55,7 @@ console.log(book.findall('toc'));
   temp.chapters.push(ch);
   res.books.push(temp);
 });
-console.log(res.books[0].toc);
+//console.log(res.books[0].chapters);
 /*
 console.log(etree.findall('./entry/TenantId').length); // 2
 console.log(etree.findtext('./entry/ServiceName')); // MaaS
