@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/Bridgeconn/usfx_to_json#readme",
   "dependencies": {
-    "elementtree": "^0.1.6"
+    "elementtree": "^0.1.6",
+    "express": "^4.13.4",
+    "http": "0.0.0"
   }
 }

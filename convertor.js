@@ -16,17 +16,17 @@ res.langCode = etree.find('languageCode').text;
 res.books = [];
 books_var.forEach(function(book, index, array) {
 
-    val = book.findall('p');
-    toc_val = book.findall('toc');
+  val = book.findall('p');
+  toc_val = book.findall('toc');
   temp = {};
 
   temp.toc = [];
 
-    toc_val.forEach(function(toc, i, varr) {
-	tl = {};
-	tl = toc.attrib;
-	tl.text = toc.text;
-	temp.toc.push(tl);
+  toc_val.forEach(function(toc, i, varr) {
+  	tl = {};
+  	tl = toc.attrib;
+  	tl.text = toc.text;
+  	temp.toc.push(tl);
     });
 
   temp.name = book.attrib.id;
@@ -38,12 +38,12 @@ books_var.forEach(function(book, index, array) {
     if(p._children.length > 0) {
       p._children.forEach(function(v, i, varr) {
         if(v.tag == 'v') {
-            t = v.attrib.bcv.split('.');
-            if(c_counter != t[1]) {
-              ch[parseInt(t[1])] = {};
-              c_counter = t[1];
-            }
-            ch[parseInt(t[1])][parseInt(t[2])] = v.tail.replace(/^\s+|\s+$/g, '');
+          t = v.attrib.bcv.split('.');
+          if(c_counter != t[1]) {
+            ch[parseInt(t[1])] = {};
+            c_counter = t[1];
+          }
+          ch[parseInt(t[1])][parseInt(t[2])] = v.tail.replace(/^\s+|\s+$/g, '');
         }
       });
     }
@@ -51,7 +51,9 @@ books_var.forEach(function(book, index, array) {
   temp.chapters.push(ch);
   res.books.push(temp);
 });
-console.log(res.books[1].toc);
+console.log(res);
+
+module.exports = convertor;
 /*
 console.log(etree.findall('./entry/TenantId').length); // 2
 console.log(etree.findtext('./entry/ServiceName')); // MaaS
