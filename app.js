@@ -28,6 +28,14 @@ app.get('/', function(req, res){
   });
 });
 
+//route with url as parameter
+app.get('/usfx_to_json/usx', function(req,res){
+
+  var url = req.url;
+
+   res.send("check it" + ' ' + url);
+});
+
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });

@@ -1,3 +1,6 @@
+var express = require('express');
+var app = express();
+
 var fs = require('fs');
 
 var et = require('elementtree');
@@ -11,7 +14,9 @@ var data, etree;
 
 exports.processData = function (data) {
   var res = {};
+
   // var data = fs.readFileSync('./data/test.xml').toString();
+
   etree = et.parse(data);
   books_var = etree.findall('book');
   res.langCode = etree.find('languageCode').text;
