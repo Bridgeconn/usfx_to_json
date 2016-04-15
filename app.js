@@ -29,11 +29,12 @@ app.get('/', function(req, res){
 });
 
 //route with url as parameter
-app.get('/usfx_to_json/usx', function(req,res){
-
-  var url = req.url;
-
-   res.send("check it" + ' ' + url);
+app.get('/json', function(req,res){
+    url = req.query.usfx
+    console.log(url)
+//  var url = req.url;
+    res.status(200).send('Recived Data. USX URL is= ' + url);
+//   res.send("check it" + ' ' + url);
 });
 
 app.listen(3000, function () {
