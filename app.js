@@ -2,17 +2,16 @@ var express = require('express');
 var app = express();
 
 var convertor = require('./convertor.js');
+var http = require("http");
 
 // initialize the container for our data
 var data = "";
 
-app.get('/', function(req, res){
-
-  var http = require("http");
+app.get('/json', function(req, res){
 
   var options = {
-    host: 'www.operationagape.com' ,
-    path: '/soveetest/Bible_edited.xml'
+    host: req.query.host ,
+    path: req.query.path
   };
 
   http.get(options, function (http_res) {
@@ -26,15 +25,6 @@ app.get('/', function(req, res){
       convertor.processData(data)
     });
   });
-});
-
-//route with url as parameter
-app.get('/json', function(req,res){
-    url = req.query.usfx
-    console.log(url)
-//  var url = req.url;
-    res.status(200).send('Recived Data. USX URL is= ' + url);
-//   res.send("check it" + ' ' + url);
 });
 
 app.listen(3000, function () {
